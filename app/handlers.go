@@ -1,9 +1,10 @@
 package app
 
 import (
-	// "encoding/json"
 	"fmt"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 type Customer struct {
@@ -22,11 +23,9 @@ func getAllCustomers(w http.ResponseWriter, r *http.Request) {
 		{Name: "Customer2", City: "City2", Zipcode: "112234"},
 		{Name: "Customer3", City: "City3", Zipcode: "112235"},
 	}
-	// dataJson, err := json.Marshal(customers)
-	// if err != nil {
-	// 	fmt.Println("Error marshalling data")
-	// }
 	fmt.Fprint(w, customers)
-	// w.Header().Add("Content-Type", "application/json")
-	// json.NewEncoder(w).Encode(customers)
+}
+func getCustomer(w http.ResponseWriter, r *http.Request) {
+	vars:=mux.Vars(r)
+	fmt.Fprint(w, vars["id"])
 }
